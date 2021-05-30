@@ -12,6 +12,9 @@ public class EinAusgabe {
   BinarySearchTree<SortierInt> intTree;
   BinarySearchTree<SortierString> stringTree;
 
+  /**
+   * constructor which also starts the main loop.
+   */
   public EinAusgabe() {
     br = new BufferedReader(new InputStreamReader(System.in));
     intTree = new BinarySearchTree<SortierInt>();
@@ -51,10 +54,12 @@ public class EinAusgabe {
           System.out.println(preorder(intTree, 0));
           System.out.println("Jetzte Inorder");
           System.out.println(inorder(intTree, 0));
-
+          break;
         case 's':
           keepRunning = false;
           break;
+        default:
+          System.out.println("Eingabe nicht erkannt");
       }
     } catch (IOException pE) {
       System.out.println("Problem mit Eingabe");

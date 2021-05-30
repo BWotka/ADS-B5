@@ -18,6 +18,10 @@ public class BinarySearchTree<ContentType extends Vergleichbar<ContentType>> {
   public BinarySearchTree() {
   }
 
+  /**
+   * removes this element and moves other elements up.
+   * order stays intact
+   */
   public void delete() {
     right.leftInsert(left);
     basis = right.getContent();
@@ -25,6 +29,12 @@ public class BinarySearchTree<ContentType extends Vergleichbar<ContentType>> {
     left = right.getLeft();
   }
 
+  /**
+   * inserts pInhalt at the correct spot.
+   * works with recursion
+   *
+   * @param pInhalt which will be inserted
+   */
   public void insert(ContentType pInhalt) {
     if (this.isEmpty()) {
       basis = pInhalt;
@@ -69,6 +79,13 @@ public class BinarySearchTree<ContentType extends Vergleichbar<ContentType>> {
     }
   }
 
+  /**
+   * removes pRemove from tree or children trees.
+   * nothing happens if premove not in tree
+   * works with recursion
+   *
+   * @param pRemove content which will be removed
+   */
   public void remove(ContentType pRemove) {
     if (this.isEmpty()) {
       return;
