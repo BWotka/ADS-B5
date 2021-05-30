@@ -23,6 +23,10 @@ public class BinarySearchTree<ContentType extends Vergleichbar<ContentType>> {
    * order stays intact
    */
   public void delete() {
+    if (right == null) {
+      right = left;
+      return;
+    }
     right.leftInsert(left);
     basis = right.getContent();
     right = right.getRight();
@@ -40,9 +44,15 @@ public class BinarySearchTree<ContentType extends Vergleichbar<ContentType>> {
       basis = pInhalt;
       return;
     }
+    if (right == null) {
+      right = new BinarySearchTree<ContentType>();
+    }
     if (pInhalt.isGreater(basis)) {
       right.insert(pInhalt);
       return;
+    }
+    if (left == null) {
+      left = new BinarySearchTree<ContentType>();
     }
     if (pInhalt.isLess(basis)) {
       left.insert(pInhalt);

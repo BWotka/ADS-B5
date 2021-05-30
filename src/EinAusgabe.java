@@ -118,11 +118,15 @@ public class EinAusgabe {
    * @param pDepth  depth of pWurzel in complete tree
    * @return preorder String of tree
    */
-  private String preorder(BinarySearchTree pWurzel, int pDepth) {
+  private String preorder(BinarySearchTree<SortierInt> pWurzel, int pDepth) {
+    if (pWurzel == null) {
+      return "null\n";
+    }
     String ausgabe = "";
     ausgabe += wertAusgabe(pWurzel, pDepth);
     ausgabe += " : ";
     ausgabe += wertAusgabe(pWurzel.getLeft(), pDepth + 1);
+    ausgabe += " , ";
     ausgabe += wertAusgabe(pWurzel.getRight(), pDepth + 1);
     ausgabe += "\n";
     return ausgabe + preorder(pWurzel.getLeft(), pDepth + 1) + preorder(pWurzel.getRight(), pDepth + 1);
@@ -137,11 +141,15 @@ public class EinAusgabe {
    * @param pDepth  depth of pWurzel in complete tree
    * @return inorder String of tree
    */
-  private String inorder(BinarySearchTree pWurzel, int pDepth) {
+  private String inorder(BinarySearchTree<SortierInt> pWurzel, int pDepth) {
+    if (pWurzel == null) {
+      return "null\n";
+    }
     String ausgabe = "";
     ausgabe += wertAusgabe(pWurzel, pDepth);
     ausgabe += " : ";
     ausgabe += wertAusgabe(pWurzel.getLeft(), pDepth + 1);
+    ausgabe += " , ";
     ausgabe += wertAusgabe(pWurzel.getRight(), pDepth + 1);
     ausgabe += "\n";
     return preorder(pWurzel.getLeft(), pDepth + 1) + ausgabe + preorder(pWurzel.getRight(), pDepth + 1);
@@ -154,18 +162,21 @@ public class EinAusgabe {
    * @param pDepth  depth of pWurzel in complete tree
    * @return String like "a(ha,ba)"
    */
-  private String wertAusgabe(BinarySearchTree pWurzel, int pDepth) {
+  private String wertAusgabe(BinarySearchTree<SortierInt> pWurzel, int pDepth) {
+    if (pWurzel == null) {
+      return "null";
+    }
     if (pWurzel.isEmpty()) {
       return "null";
     }
     int balance = 0;
-    if (! pWurzel.getLeft().isEmpty()) {
+    if (! (pWurzel.getLeft() == null) && ! (pWurzel.getLeft().isEmpty())) {
       balance++;
     }
-    if (! pWurzel.getRight().isEmpty()) {
+    if (! (pWurzel.getRight() == null) && ! (pWurzel.getRight().isEmpty())) {
       balance++;
     }
-    return pWurzel.getContent() + "(" + pDepth + " ," + balance + ")";
+    return pWurzel.getContent().getInhalt() + "(" + pDepth + " ," + balance + ")";
   }
 }
 
