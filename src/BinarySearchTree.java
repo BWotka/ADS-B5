@@ -23,7 +23,7 @@ public class BinarySearchTree<ContentType extends Vergleichbar<ContentType>> {
    * order stays intact
    */
   public void delete() {
-    /**
+    /*
      * switch
      * no child
      * one child

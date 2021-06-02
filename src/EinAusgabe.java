@@ -183,7 +183,7 @@ public class EinAusgabe {
   }
 
   private String removeEmptyTrees(String pausgabe) {
-    String lines[] = pausgabe.split("\\r?\\n");
+    String[] lines = pausgabe.split("\\r?\\n");
     String neuausgabe = "";
     for (int i = 0; i < lines.length; i++) {
       if (lines[i].equals("null") | lines[i].equals("null\n") | lines[i].equals("null : null , null")) {
