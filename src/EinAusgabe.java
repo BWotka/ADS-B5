@@ -51,9 +51,9 @@ public class EinAusgabe {
           break;
         case 'a':
           System.out.println("Zuerst Preoder");
-          System.out.println(preorder(intTree, 0));
+          System.out.println(removeEmptyTrees(preorder(intTree, 0)));
           System.out.println("Jetzte Inorder");
-          System.out.println(inorder(intTree, 0));
+          System.out.println(removeEmptyTrees(inorder(intTree, 0)));
           break;
         case 's':
           keepRunning = false;
@@ -152,7 +152,7 @@ public class EinAusgabe {
     ausgabe += " , ";
     ausgabe += wertAusgabe(pWurzel.getRight(), pDepth + 1);
     ausgabe += "\n";
-    return preorder(pWurzel.getLeft(), pDepth + 1) + ausgabe + preorder(pWurzel.getRight(), pDepth + 1);
+    return inorder(pWurzel.getLeft(), pDepth + 1) + ausgabe + inorder(pWurzel.getRight(), pDepth + 1);
   }
 
   /**
@@ -177,6 +177,19 @@ public class EinAusgabe {
       balance++;
     }
     return pWurzel.getContent().getInhalt() + "(" + pDepth + " ," + balance + ")";
+  }
+
+  private String removeEmptyTrees(String pausgabe) {
+    String lines[] = pausgabe.split("\\r?\\n");
+    String neuausgabe = "";
+    for (int i = 0; i < lines.length; i++) {
+      if (lines[i].equals("null") | lines[i].equals("null\n")) {
+        continue;
+      } else {
+        neuausgabe += lines[i] + "\n";
+      }
+    }
+    return neuausgabe;
   }
 }
 

@@ -47,4 +47,41 @@ class BinaryTreeTest {
   public void voll_isEmpty() {
     assertFalse(new BinaryTree<Integer>(3, new BinaryTree<Integer>(5), new BinaryTree<Integer>(7)).isEmpty());
   }
+
+  /*
+  search method working
+   */
+  @Test
+  public void search_isInTree() {
+    BinarySearchTree<SortierInt> wurzel = new BinarySearchTree<SortierInt>(new SortierInt(6));
+    wurzel.insert(new SortierInt(2));
+    wurzel.insert(new SortierInt(12));
+    wurzel.insert(new SortierInt(8));
+    assertEquals(wurzel.search(new SortierInt(8)).inhalt, 8);
+  }
+
+  /*
+  search method working when not in tree
+   */
+  @Test
+  public void search_isNotInTree() {
+    BinarySearchTree<SortierInt> wurzel = new BinarySearchTree<SortierInt>(new SortierInt(6));
+    wurzel.insert(new SortierInt(2));
+    wurzel.insert(new SortierInt(12));
+    wurzel.insert(new SortierInt(8));
+    assertNull(wurzel.search(new SortierInt(9)));
+  }
+
+  /*
+  remove working
+   */
+  @Test
+  public void delete() {
+    BinarySearchTree<SortierInt> wurzel = new BinarySearchTree<SortierInt>(new SortierInt(6));
+    wurzel.insert(new SortierInt(2));
+    wurzel.insert(new SortierInt(12));
+    wurzel.insert(new SortierInt(8));
+    wurzel.remove(new SortierInt(8));
+    assertFalse(wurzel.contains(new SortierInt(8)));
+  }
 }
