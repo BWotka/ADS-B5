@@ -44,13 +44,13 @@ public class BinarySearchTree<ContentType extends Vergleichbar<ContentType>> {
         if (! (left == null) && ! (left.isEmpty())) {
           //rechts ist leer
           basis = left.getContent();
-          left = left.getLeft();
           right = left.getRight();
+          left = left.getLeft();
         } else {
           //links ist leer
           basis = right.getContent();
-          right = right.getRight();
           left = right.getLeft();
+          right = right.getRight();
         }
         break;
       case 2:
@@ -109,7 +109,20 @@ public class BinarySearchTree<ContentType extends Vergleichbar<ContentType>> {
   }
 
   private ContentType furthestLeft() {
-    if (left == null | left.isEmpty()) {
+    if (left == null) {
+      ContentType rueckgabe = basis;
+      //rechten teil hochziehen / loeschen
+      if (right == null) {
+        basis = null;
+      } else if (right.isEmpty()) {
+        basis = null;
+      } else {
+        basis = right.getContent();
+        right = right.getRight();
+        left = right.getLeft();
+      }
+      return rueckgabe;
+    } else if (left.isEmpty()) {
       ContentType rueckgabe = basis;
       //rechten teil hochziehen / loeschen
       if (right == null | right.isEmpty()) {

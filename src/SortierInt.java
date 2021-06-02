@@ -44,4 +44,8 @@ public class SortierInt implements Vergleichbar<SortierInt> {
   public int getInhalt() {
     return inhalt;
   }
+
+  public void setInhalt(int pNeu) {
+    inhalt = pNeu;
+  }
 }

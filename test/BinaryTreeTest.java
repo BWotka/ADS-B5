@@ -76,12 +76,38 @@ class BinaryTreeTest {
   remove working
    */
   @Test
-  public void delete() {
+  public void remove_nochild() {
     BinarySearchTree<SortierInt> wurzel = new BinarySearchTree<SortierInt>(new SortierInt(6));
     wurzel.insert(new SortierInt(2));
     wurzel.insert(new SortierInt(12));
     wurzel.insert(new SortierInt(8));
     wurzel.remove(new SortierInt(8));
     assertFalse(wurzel.contains(new SortierInt(8)));
+  }
+
+  /*
+  remove working
+   */
+  @Test
+  public void remove_onechild() {
+    BinarySearchTree<SortierInt> wurzel = new BinarySearchTree<SortierInt>(new SortierInt(6));
+    wurzel.insert(new SortierInt(2));
+    wurzel.insert(new SortierInt(12));
+    wurzel.insert(new SortierInt(8));
+    wurzel.remove(new SortierInt(12));
+    assertFalse(wurzel.contains(new SortierInt(12)));
+  }
+
+  /*
+  remove working
+   */
+  @Test
+  public void remove_twochildren() {
+    BinarySearchTree<SortierInt> wurzel = new BinarySearchTree<SortierInt>(new SortierInt(6));
+    wurzel.insert(new SortierInt(2));
+    wurzel.insert(new SortierInt(12));
+    wurzel.insert(new SortierInt(8));
+    wurzel.remove(new SortierInt(6));
+    assertFalse(wurzel.contains(new SortierInt(6)));
   }
 }

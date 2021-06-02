@@ -69,9 +69,12 @@ public class EinAusgabe {
   private void modify() {
     System.out.println("Modifizieren ausgewählt");
     System.out.println("Welche Zahl soll bearbeitet werden?");
-    intTree.remove(new SortierInt(leseInteger()));
+    int mod = leseInteger();
+    SortierInt sInt = intTree.search(new SortierInt(mod));
+    intTree.remove(new SortierInt(mod));
     System.out.println("Wie soll die Zahl jetzt lauten?");
-    intTree.insert(new SortierInt(leseInteger()));
+    sInt.setInhalt(leseInteger());
+    intTree.insert(sInt);
     System.out.println("Neue Zahl jetzt im Baum");
   }
 
@@ -183,7 +186,7 @@ public class EinAusgabe {
     String lines[] = pausgabe.split("\\r?\\n");
     String neuausgabe = "";
     for (int i = 0; i < lines.length; i++) {
-      if (lines[i].equals("null") | lines[i].equals("null\n")) {
+      if (lines[i].equals("null") | lines[i].equals("null\n") | lines[i].equals("null : null , null")) {
         continue;
       } else {
         neuausgabe += lines[i] + "\n";
