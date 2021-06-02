@@ -172,14 +172,7 @@ public class EinAusgabe {
     if (pWurzel.isEmpty()) {
       return "null";
     }
-    int balance = 0;
-    if (! (pWurzel.getLeft() == null) && ! (pWurzel.getLeft().isEmpty())) {
-      balance++;
-    }
-    if (! (pWurzel.getRight() == null) && ! (pWurzel.getRight().isEmpty())) {
-      balance++;
-    }
-    return pWurzel.getContent().getInhalt() + "(" + pDepth + " ," + balance + ")";
+    return pWurzel.getContent().getInhalt() + "(" + maxDepth(pWurzel) + " ," + balance(pWurzel) + ")";
   }
 
   private String removeEmptyTrees(String pausgabe) {
@@ -193,6 +186,49 @@ public class EinAusgabe {
       }
     }
     return neuausgabe;
+  }
+
+  /**
+   * Calculates the max depth/high of pWurzel
+   * uses recursion
+   *
+   * @param pWurzel of which the max depth will be calcualted
+   * @return max depth of parameter tree
+   */
+  private int maxDepth(BinarySearchTree<SortierInt> pWurzel) {
+    if (pWurzel == null) {
+      return 0;
+    }
+    if (pWurzel.isEmpty()) {
+      return 0;
+    }
+    int hightl;
+    if (pWurzel.getLeft() == null) {
+      hightl = 0;
+    } else {
+      hightl = maxDepth(pWurzel.getLeft());
+    }
+    int hightr;
+    if (pWurzel.getLeft() == null) {
+      hightr = 0;
+    } else {
+      hightr = maxDepth(pWurzel.getRight());
+    }
+    if (hightr > hightl) {
+      return 1 + hightr;
+    } else {
+      return 1 + hightl;
+    }
+  }
+
+  /**
+   * Calculates balance of pWurzel.
+   *
+   * @param pWurzel tree of which the balance will be calculated
+   * @return balanace of parameter tree
+   */
+  private int balance(BinarySearchTree<SortierInt> pWurzel) {
+    return maxDepth(pWurzel.getLeft()) - maxDepth(pWurzel.getRight());
   }
 }
 
